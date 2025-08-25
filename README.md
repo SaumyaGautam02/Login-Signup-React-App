@@ -69,7 +69,7 @@ Make sure you have the following installed on your machine:
 ---
 
 ## Live Demo
-You can try the live demo of the application here: [Live Demo Link](https://your-demo-link.com)
+You can try the live demo of the application here: [Live Demo Link](https://login-signup-react-app-six.vercel.app/)
 
 
 
