@@ -19,8 +19,8 @@ Make sure you have the following installed on your machine:
 
 1. **Clone the repository:**
    ```
-   git clone https://github.com/SaumyaGautam02/Saumya-Gautam.git
-   cd login-signup-app
+   git clone https://github.com/SaumyaGautam02/Login-Signup-React-App
+   cd Login-Signup-React-App
    ```
 
 2. **Install dependencies:**
@@ -73,4 +73,4 @@ You can try the live demo of the application here: [Live Demo Link](https://your
 
 
 
-Project Link: [https://github.com/SaumyaGautam02/Saumya-Gautam]
+Project Link: [https://github.com/SaumyaGautam02/Login-Signup-React-App]
