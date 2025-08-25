@@ -5,14 +5,14 @@ import InputField from "../Components/InputField";
 const validateUsername = (username) =>
   /^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+$/.test(username)
     ? ""
-    : "Username must be alphanumeric and can include special characters.";
+    : "Username is incorrect.";
 
 const validatePassword = (password, username) =>
   password !== username && /^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+$/.test(password)
     ? ""
     : password === username
     ? "Password should not be same as username."
-    : "Password must be alphanumeric and can include special characters.";
+    : "Password is incorrect";
 
 const Login = () => {
   const [form, setForm] = useState({ username: "", password: "" });
