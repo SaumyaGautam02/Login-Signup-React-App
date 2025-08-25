@@ -71,7 +71,6 @@ function Signup() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-2xl">
-        {/* Removed Logo/Icon */}
         <div className="bg-[#00674b] rounded-t-lg py-6 px-4 flex items-center justify-center shadow-lg">
           <h2 className="text-center text-xl md:text-2xl font-mono text-white font-semibold tracking-wide">
             Create new Account
