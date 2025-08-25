@@ -1,18 +1,5 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import InputField from "../Components/InputField";
-
-const validateUsername = (username) =>
-  /^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+$/.test(username)
-    ? ""
-    : "Username is incorrect.";
-
-const validatePassword = (password, username) =>
-  password !== username && /^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+$/.test(password)
-    ? ""
-    : password === username
-    ? "Password should not be same as username."
-    : "Password is incorrect";
 
 const Login = () => {
   const [form, setForm] = useState({ username: "", password: "" });
@@ -28,12 +15,21 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    const newErrors = {
-      username: validateUsername(form.username),
-      password: validatePassword(form.password, form.username),
-    };
+    let newErrors = {};
+    if (!form.username.trim()) {
+      newErrors.username = "Username must not be empty";
+    } else if (!/^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+$/.test(form.username)) {
+      newErrors.username = "Invalid username or password.";
+    }
+    if (!form.password.trim()) {
+      newErrors.password = "Password must not be empty";
+    } else if (form.password === form.username || !/^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+$/.test(form.password)) {
+      newErrors.password = "Invalid username or password.";
+    }
+
     setErrors(newErrors);
-    if (!newErrors.username && !newErrors.password) {
+
+    if (Object.keys(newErrors).length === 0) {
       setSuccess(true);
       setTimeout(() => {
         navigate("/home");
@@ -64,11 +60,11 @@ const Login = () => {
                 name="username"
                 value={form.username}
                 onChange={handleChange}
-                className={`peer w-full px-2 py-2 border-b-2 focus:outline-none focus:border-[#00674b] focus:text-[#00674b] caret-[#00674b] bg-gray-50 transition-colors duration-200 hover:bg-gray-100 ${
-                  errors.username ? "border-red-500" : "border-gray-300"
-                }`}
+                className="peer w-full px-2 py-2 border-b-2 focus:outline-none focus:border-[#00674b] focus:text-[#00674b] caret-[#00674b] bg-gray-50 transition-colors duration-200 hover:bg-gray-100 border-gray-300"
               />
-              {errors.username && <p className="text-red-500 text-xs mt-1">{errors.username}</p>}
+              {errors.username && (
+                <p className="text-red-500 text-xs mt-1">{errors.username}</p>
+              )}
             </div>
             <div className="mb-6 relative">
               <label className="block text-xs font-semibold text-gray-600 mb-1 uppercase peer-focus:text-[#00674b] transition-colors duration-200">
@@ -79,9 +75,7 @@ const Login = () => {
                 name="password"
                 value={form.password}
                 onChange={handleChange}
-                className={`peer w-full px-2 py-2 border-b-2 focus:outline-none focus:border-[#00674b] focus:text-[#00674b] caret-[#00674b] bg-gray-50 transition-colors duration-200 hover:bg-gray-100 ${
-                  errors.password ? "border-red-500" : "border-gray-300"
-                }`}
+                className="peer w-full px-2 py-2 border-b-2 focus:outline-none focus:border-[#00674b] focus:text-[#00674b] caret-[#00674b] bg-gray-50 transition-colors duration-200 hover:bg-gray-100 border-gray-300"
               />
               <span
                 className="absolute right-2 top-8 cursor-pointer text-[#00674b] hover:text-[#004d3a] transition"
@@ -100,7 +94,9 @@ const Login = () => {
                   </svg>
                 )}
               </span>
-              {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password}</p>}
+              {errors.password && (
+                <p className="text-red-500 text-xs mt-1">{errors.password}</p>
+              )}
             </div>
             <button
               type="submit"
@@ -122,4 +118,3 @@ const Login = () => {
 };
 
 export default Login;
-
